@@ -1,0 +1,57 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a [routerLink]="['/people-list']">Listar</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Crear</li>
+    </ol>
+</nav>
+
+
+<div class="card">
+    <div class="card-header">
+        Registrar persona
+    </div>
+    <div class="card-body">
+        <blockquote class="blockquote mb-0">
+            <p>Diligenciar el formulario</p>
+            <form (ngSubmit)="insertarPersona()" #personaForm="ngForm">
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="Nombres">Nombres</label>
+                        <input type="text" class="form-control" id="Nombres" name="Nombres" placeholder="nombres" [(ngModel)]="persona.nombre"  #nombre="ngModel" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="Apellidos">Apellidos</label>
+                        <input type="text" class="form-control" id="Apellidos" name="Apellidos" placeholder="apellidos" [(ngModel)]="persona.apellido"  #apellido="ngModel" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="tipoDocIdentidad">Tipo de documento</label>
+    
+                        <select class="form-control" id="tipoDocIdentidad" name="tipoDocIdentidad" placeholder="d.ff" [(ngModel)]="persona.tipoDocumentoIdentidad" #tipoDocumentoIdentidad="ngModel" required>
+                            <option hidden disabled selected>--Seleccionar--</option>
+                            <option *ngFor="let tipodocumento of tiposDocumentoIdentidad" [ngValue]="tipodocumento">{{tipodocumento.nombre}}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="nroDocumento">Número de documento</label>
+                        <input type="text" class="form-control" id="nroDoc" name="nroDoc" placeholder="número de identidad" [(ngModel)]="persona.nroDocumento"  #nroDocumento="ngModel" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="Telefono">Teléfono</label>
+                        <input type="text" class="form-control" id="Telefono" name="Telefono" placeholder="teléfono" [(ngModel)]="persona.telefono"  #telefono="ngModel" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary" [disabled]="!personaForm.form.valid">Registrar</button>
+            </form>
+
+        </blockquote>
+    </div>
+</div>
